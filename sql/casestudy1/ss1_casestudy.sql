@@ -101,7 +101,7 @@ foreign key (ma_dich_vu) references dich_vu(ma_dich_vu)
 );
 
 create table hop_dong_chi_tiet(
-ma_hop_dong_chi_tiet int primary key,
+ma_hop_dong_chi_tiet int primary key auto_increment,
 ma_hop_dong int,
 ma_dich_vu_di_kem int,
 so_luong int,
@@ -197,14 +197,14 @@ values (1, '2020-12-08', '2020-12-08', 0, 3, 1, 3),
 (12, '2021-05-25', '2021-05-27', 0, 7, 10, 1);
 
 insert into hop_dong_chi_tiet (`ma_hop_dong_chi_tiet`, `ma_hop_dong`, `ma_dich_vu_di_kem`, `so_luong`)
-values (1, 5, 2, 4),
-(2, 8, 2, 5),
-(3, 15, 2, 6),
-(4, 1, 3, 1),
-(5, 11, 3, 2),
-(6, 1, 1, 3),
-(7, 2, 1, 2),
-(8, 2, 12, 2);
+values (1,2,4,5),
+(2,2,5,8),
+(3,2,6,15),
+(4,3,1,1),
+(5,3,2,11),
+(6,1,3,1),
+(7,1,2,2),
+(8,12,2,2);
 
 
 
