@@ -23,8 +23,8 @@ product_price double
 
 
 create table order_detail(
-order_id int,
-product_id int,
+order_id int ,
+product_id int ,
 primary key(order_id, product_id),
 order_detail_qty varchar(50),
 foreign key (order_id) references `order`(order_id),
