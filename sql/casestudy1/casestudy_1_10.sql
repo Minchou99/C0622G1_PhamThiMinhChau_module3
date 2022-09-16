@@ -87,18 +87,73 @@ where lk.ten_loai_khach like '%Diamond%' and (kh.dia_chi like '%Vinh%' or kh.dia
 order by dvdk.ma_dich_vu_di_kem;
 
 -- task 12
-select hd.ma_hop_dong, nv.ho_ten ho_ten_nhan_vien, kh.ho_ten ho_ten_khach_hang,kh.so_dien_thoai,dv.ten_dich_vu,sum(ifnull(hdct.so_luong,0)) so_luong_di_kem from hop_dong hd 
+select hd.ma_hop_dong, nv.ho_ten ho_ten_nhan_vien, kh.ho_ten ho_ten_khach_hang,kh.so_dien_thoai,dv.ten_dich_vu, hd.tien_dat_coc,
+sum(ifnull(hdct.so_luong,0)) so_luong_di_kem from hop_dong hd 
 inner join nhan_vien nv on hd.ma_nhan_vien = nv.ma_nhan_vien
 inner join khach_hang kh on hd.ma_khach_hang = kh.ma_khach_hang
 inner join dich_vu dv on hd.ma_dich_vu = dv.ma_dich_vu
-inner join hop_dong_chi_tiet hdct on hd.ma_hop_dong = hdct.ma_hop_dong
-where ( year(hd.ngay_lam_hop_dong) = 2020 and quarter(4)) and dv.ma_dich_vu not in (
-select dv.ma_dich_vu from hop_dong hd
-inner join nhan_vien nv on hd.ma_nhan_vien = nv.ma_nhan_vien
-inner join khach_hang kh on hd.ma_khach_hang = kh.ma_khach_hang
-inner join dich_vu dv on hd.ma_dich_vu = dv.ma_dich_vu
-inner join hop_dong_chi_tiet hdct on hd.ma_hop_dong = hdct.ma_hop_dong
-where year(hd.ngay_lam_hop_dong) = 2021 and quarter( 1 )
-)
-;
+left join hop_dong_chi_tiet hdct on hd.ma_hop_dong = hdct.ma_hop_dong
+where hd.ma_hop_dong in (
+select hd.ma_hop_dong from hop_dong hd 
+where year(hd.ngay_lam_hop_dong) = 2020 and quarter(hd.ngay_lam_hop_dong) = 4)
+and hd.ma_hop_dong not in (
+select hd.ma_hop_dong from hop_dong hd 
+where year(hd.ngay_lam_hop_dong) = 2021 and (quarter(hd.ngay_lam_hop_dong) in (1,2)))
+group by hd.ma_hop_dong;
 
+-- task 13
+select dvdk.ma_dich_vu_di_kem, dvdk.ten_dich_vu_di_kem, sum(hdct.so_luong) so_lan_su_dung from dich_vu_di_kem dvdk 
+inner join hop_dong_chi_tiet hdct on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+group by dvdk.ma_dich_vu_di_kem
+having so_lan_su_dung >= all (
+select sum(hdct.so_luong) so_lan_su_dung from dich_vu_di_kem dvdk 
+inner join hop_dong_chi_tiet hdct on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+group by dvdk.ma_dich_vu_di_kem
+);
+
+-- task 14
+select hd.ma_hop_dong, ldv.ten_loai_dich_vu, dvdk.ten_dich_vu_di_kem, count(hdct.ma_dich_vu_di_kem) so_lan_su_dung from hop_dong hd
+join hop_dong_chi_tiet hdct on hd.ma_hop_dong = hdct.ma_hop_dong
+join dich_vu_di_kem dvdk on hdct.ma_dich_vu_di_kem = dvdk.ma_dich_vu_di_kem
+join dich_vu dv on hd.ma_dich_vu = dv.ma_dich_vu
+join loai_dich_vu ldv on dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+group by hdct.ma_dich_vu_di_kem
+having so_lan_su_dung =1
+order by hd.ma_hop_dong;
+
+-- task 15
+select nv.ma_nhan_vien, nv.ho_ten, td.ten_trinh_do, bp.ten_bo_phan, nv.so_dien_thoai, nv.dia_chi from nhan_vien nv
+join trinh_do td on nv.ma_trinh_do = td.ma_trinh_do
+join bo_phan bp on nv.ma_bo_phan = bp.ma_bo_phan
+join hop_dong hd on nv.ma_nhan_vien = hd.ma_nhan_vien
+where year(hd.ngay_lam_hop_dong) in (2020,2021)
+group by hd.ma_nhan_vien
+having count(hd.ma_hop_dong) <=3
+order by hd.ma_nhan_vien;
+
+-- task 16
+-- cach 1
+create view nv_chua_co_hop_dong as 
+select nv.ma_nhan_vien from nhan_vien nv
+ where nv.ma_nhan_vien not in(select nv.ma_nhan_vien 
+							 from nhan_vien nv join hop_dong hd on nv.ma_nhan_vien = hd.ma_nhan_vien
+							 where hd.ngay_lam_hop_dong between '2019-01-01' and '2021-12-31'
+                             group by nv.ma_nhan_vien) 
+group by nv.ma_nhan_vien;
+select * from nv_chua_co_hop_dong;
+delete nhan_vien from
+nhan_vien join nv_chua_co_hop_dong on nhan_vien.ma_nhan_vien = nv_chua_co_hop_dong.ma_nhan_vien;
+
+-- cach 2
+SET SQL_SAFE_UPDATES = 0;
+delete nhan_vien from nhan_vien
+left join hop_dong
+on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+ where exists (
+select * , hop_dong.ma_hop_dong
+where hop_dong.ma_hop_dong is null
+order by nhan_vien.ma_nhan_vien
+) ;
+-- task 17
+
+					
