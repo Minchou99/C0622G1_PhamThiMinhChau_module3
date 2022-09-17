@@ -19,17 +19,23 @@ values(1,'P001','Ô mô', 35000, 50, 'Sạch những vết bẩn cứng đầu',
 
 create unique index i_index on products(product_code);
 create index i_index_1 on products(product_name, product_price);
-explain select* from products ;
+explain select* 
+from products ;
 
-create view w_products as select product_code, product_name, product_price, product_status from products;
-update w_products set product_name = 'Ô tô matic ' where product_code = 'P001';
+create view w_products 
+as select product_code, product_name, product_price, product_status 
+from products;
+update w_products 
+set product_name = 'Ô tô matic ' 
+where product_code = 'P001';
 drop view w_products;
 
 -- Tạo store procedure lấy tất cả thông tin của tất cả các sản phẩm trong bảng product
 delimiter //
 create procedure p_get_all_products()
 begin
-select * from products;
+select * 
+from products;
 end //
 delimiter ;
 call p_get_all_products();
@@ -38,7 +44,8 @@ call p_get_all_products();
 delimiter //
 create procedure p_insert_new_products()
 begin
-insert into products values (7,'P007','Ô mô', 35000, 250, 'Sạch những vết bẩn cứng đầu và lưu hương lâu','cháy hàng');
+insert into products 
+values (7,'P007','Ô mô', 35000, 250, 'Sạch những vết bẩn cứng đầu và lưu hương lâu','cháy hàng');
 end //
 delimiter ;
 call p_insert_new_products();
@@ -47,7 +54,9 @@ call p_insert_new_products();
 delimiter //
 create procedure p_update_products()
 begin
-update products set product_name = 'A ba', product_price = '230000' where product_id = 1;
+update products 
+set product_name = 'A ba', product_price = '230000' 
+where product_id = 1;
 end //
 delimiter ;
 call p_update_products();
@@ -56,7 +65,8 @@ call p_update_products();
  delimiter //
 create procedure p_delete_products()
 begin
-delete from products where product_id = 1;
+delete from products 
+where product_id = 1;
 end //
 delimiter ;
 call p_delete_products();

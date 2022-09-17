@@ -59,13 +59,22 @@ VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);
        
-select *from student where student_name regexp '(^h[a-z]+$)';
-select *from class where month(start_day) = 12;
-select *from `subject` where credit >=3 and credit <=5;
+select* 
+from student 
+where student_name regexp '(^h[a-z]+$)';
+select* 
+from class 
+where month(start_day) = 12;
+select* 
+from `subject` 
+where credit >=3 and credit <=5;
 SET SQL_SAFE_UPDATES = 0;
-update student set class_id = 2 where student_name = 'Hung';
+update student 
+set class_id = 2 
+where student_name = 'Hung';
 SELECT student.student_name, `Subject`.sub_name, mark.mark
 FROM student
 INNER JOIN mark ON student.student_id = mark.student_id
-INNER JOIN `subject` ON subject.sub_id = mark.sub_id ORDER BY mark DESC, student_name;
+INNER JOIN `subject` ON subject.sub_id = mark.sub_id 
+ORDER BY mark DESC, student_name;
 
