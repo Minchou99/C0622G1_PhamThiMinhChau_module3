@@ -1,0 +1,69 @@
+body{
+    font-family: Tahoma;
+    font-size: 13px;
+    width: 1000px;
+    margin: 0px auto;
+}
+
+#menu_top{
+    background: #f8bcc5;
+    height: 40px;
+}
+
+#banner{
+    height: 280px;
+    width: 1000px;
+
+}
+
+#main #left{
+    width: 800px;
+    background: wheat ;
+    float: left;
+    min-height: 400px;
+}
+
+#main #right {
+    width: 200px;
+    background: burlywood;
+    float: left;
+    min-height: 400px;
+}
+
+#footer{
+    background: cadetblue;
+    width: 1000px;
+    text-align: center;
+    height: 60px;
+    color: #e0e0e0;
+    clear:left ;
+    line-height: 60px ;
+}
+
+#menu_top ul{
+    margin: 0px;
+    padding: 0px;
+}
+#menu_top ul li{
+    list-style: none;
+    float: left;
+}
+#menu_top ul li a{
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    width: 150px;
+    color: black;
+    padding: 0px 10px 0px 10px;
+    border-right: 1px solid #fdffff;
+}
+#menu_top ul li a.active{
+    background: dodgerblue;
+    }
+#banner img{
+    width: 1000px;
+    height: 280px;
+}
+
