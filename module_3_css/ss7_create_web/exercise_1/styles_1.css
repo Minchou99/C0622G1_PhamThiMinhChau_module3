@@ -1,0 +1,38 @@
+body {
+    font-family: Arial;
+    font-size: 13px;
+}
+
+header {
+    padding: 10px;
+    color: white;
+    background-color: black;
+    border: 1px solid #222222;
+}
+footer{
+    padding: 10px;
+    color: white;
+    background-color: black;
+    border: 1px solid #222222
+}
+section {
+    margin: 5px;
+    padding: 10px;
+    background-color: lightgrey;
+    border: olive;
+}
+
+article {
+    margin: 5px;
+    padding: 10px;
+    background-color: white;
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 5px;
+}

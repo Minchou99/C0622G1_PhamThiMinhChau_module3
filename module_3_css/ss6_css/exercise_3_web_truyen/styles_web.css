@@ -18,7 +18,7 @@ body{
 
 #main #left{
     width: 800px;
-    background: wheat ;
+    /*background: wheat ;*/
     float: left;
     min-height: 400px;
 }
@@ -65,5 +65,26 @@ body{
 #banner img{
     width: 1000px;
     height: 280px;
+    margin: 0;
 }
 
+#menu #left ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+#main #left ul li {
+    list-style: none;
+    clear: left;
+}
+
+#main #left ul li img {
+    float: left;
+    margin-right: 10px ;
+    width: 200px;
+    height: 400px;
+    margin-bottom: 10px;
+}
+#main #left ul li h2{
+    font-size: 14px;
+}
