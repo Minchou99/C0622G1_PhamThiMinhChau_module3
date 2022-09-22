@@ -11,7 +11,13 @@ body{
 }
 #header ul{
     margin: 0px;
-    padding: 0px;
+    padding: 10px;
+}
+h2{
+    text-align: center;
+}
+p{
+    text-align: justify;
 }
 #header ul li{
     text-decoration: none;
@@ -25,14 +31,14 @@ body{
 #main .left{
     width: 200px;
     height: 500px;
-    background: #2196F3;
+    background: darkkhaki;
     float: left;
 }
 #main .mid{
     width: 800px;
     float: left;
     height: 500px;
-    background: burlywood;
+    background: olive;
 }
 #main .right{
     width: 200px;
@@ -40,9 +46,22 @@ body{
     height: 500px;
     background: darkkhaki;
 }
-#footer{
+#footer {
     height: 120px;
     width: 1200px;
-    background: darkcyan;
+    background: black;
     clear: left;
+    color: white;
+    text-align: center;
+}
+.left p{
+    text-align: center;
+    margin:20px;
+}
+.right p{
+    text-align: center;
+    margin:20px;
+    border: 1px solid grey;
+    height: 50px;
+    padding: 20px;
 }
