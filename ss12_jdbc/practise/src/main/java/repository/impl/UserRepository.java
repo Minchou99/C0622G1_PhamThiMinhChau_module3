@@ -19,7 +19,8 @@ public class UserRepository implements IUserRepository {
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
 
-    public UserRepository(){};
+    public UserRepository() {
+    }
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -73,11 +74,11 @@ public class UserRepository implements IUserRepository {
         return user;
     }
 
-    public List<User> selectUserByCountry( String country){
+    public List<User> selectUserByCountry(String country) {
         List<User> users = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_COUNTRY);) {
-            preparedStatement.setString(1,country);
+            preparedStatement.setString(1, country);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -90,7 +91,7 @@ public class UserRepository implements IUserRepository {
             printSQLException(e);
         }
         return users;
-        }
+    }
 
     @Override
     public List<User> selectAllUsers() {
