@@ -11,7 +11,11 @@ public interface IProductService {
 
     Product findById(int id);
 
-    void update(int id, Product product);
+    List<Product> findByName(String name);
+
+    List<Product> findByProducer(String producer);
+
+    void update(Product product);
 
     void remove(int id);
 }
