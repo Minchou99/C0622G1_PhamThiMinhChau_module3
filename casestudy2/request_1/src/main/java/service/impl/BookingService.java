@@ -1,4 +1,6 @@
 package service.impl;
 
-public class BookingService {
+import service.IBookingService;
+
+public class BookingService implements IBookingService {
 }

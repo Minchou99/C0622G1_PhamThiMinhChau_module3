@@ -16,6 +16,24 @@ id int primary key auto_increment,
 `name` varchar(45)
 );
 
+create table `role` (
+role_id int primary key auto_increment,
+role_name varchar(255)
+);
+
+create table `user` (
+username varchar(255) primary key,
+`password` varchar(255)
+);
+
+create table user_role (
+role_id int auto_increment,
+username varchar(255),
+primary key(role_id, username), 
+foreign key (role_id) references role(role_id) ON DELETE CASCADE,
+foreign key (username) references user(username) ON DELETE CASCADE
+);
+
 create table employee(
 id int primary key auto_increment, 
 `name` varchar (45),
@@ -29,9 +47,10 @@ position_id int,
 education_degree_id int,
 division_id int,
 username varchar(255),
-foreign key (id) references position (id) ON DELETE CASCADE  ,
-foreign key (id) references education_degree(id) ON DELETE CASCADE  ,
-foreign key (id) references division (id) ON DELETE CASCADE  
+foreign key (position_id) references position (id) ON DELETE CASCADE  ,
+foreign key (education_degree_id) references education_degree(id) ON DELETE CASCADE  ,
+foreign key (division_id) references division (id) ON DELETE CASCADE,  
+foreign key (username) references user(username) ON DELETE CASCADE
 );
 
 create table customer_type (
@@ -45,7 +64,7 @@ id int primary key auto_increment,
 );
 
 create table customer (
-id int auto_increment,
+id int primary key auto_increment,
 customer_type_id int ,
 `name` varchar(45),
 date_of_birth date,
@@ -54,24 +73,7 @@ id_card varchar(45),
 phone_number varchar(45),
 email varchar(45),
 address varchar(45),
-primary key (id, customer_type_id),
 foreign key (customer_type_id) references customer_type(id) ON DELETE CASCADE  
-);
-
-create table `user` (
-username varchar(255) primary key ,
-`password` varchar(255)
-);
-
-create table `role` (
-role_id int primary key auto_increment,
-role_name varchar(255)
-);
-
-create table user_role (
-role_id int,
-username varchar(255),
-primary key(role_id, username)
 );
 
 create table rent_type(
@@ -96,6 +98,14 @@ foreign key (rent_type_id) references rent_type(id) ON DELETE CASCADE  ,
 foreign key (facility_type_id) references facility_type(id) ON DELETE CASCADE  
 );
 
+create table attach_facility(
+id int primary key auto_increment,
+`name` varchar(45),
+cost double,
+unit varchar(10),
+`status` varchar(45)
+);
+
 create table contract(
 id int primary key auto_increment,
 start_date datetime,
@@ -109,14 +119,6 @@ foreign key (customer_id) references customer(id) ON DELETE CASCADE  ,
 foreign key (facility_id) references facility(id) ON DELETE CASCADE  
 );
 
-create table attach_facility(
-id int primary key auto_increment,
-`name` varchar(45),
-cost double,
-unit varchar(10),
-`status` varchar(45)
-);
-
 create table contract_detail(
 id int primary key auto_increment,
 contract_id int,
@@ -126,8 +128,12 @@ foreign key (contract_id) references contract(id) ON DELETE CASCADE  ,
 foreign key (attach_facility_id) references attach_facility(id) ON DELETE CASCADE  
 );
 
-insert into position (id, `name` ) values (1,'quan ly'),
-							(2,'nhan vien');
+insert into position (id, `name` ) values (1,'Lễ tân'),
+							(2,'Phục vụ'),
+                            (3,'Chuyên viên'),
+                            (4,'Giám sát'),
+                            (5,'Quản lí'),
+                            (6,'Giám đốc');
                             
 insert into education_degree (id, `name`)
  values (1, 'Trung Cấp'),

@@ -1,5 +1,7 @@
 package service.impl;
 
-public class FacilityService {
+import service.IFacilityService;
+
+public class FacilityService implements IFacilityService {
 
 }
