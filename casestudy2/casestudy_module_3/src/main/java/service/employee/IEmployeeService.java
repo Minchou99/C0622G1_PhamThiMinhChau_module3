@@ -5,15 +5,15 @@ import model.employee.Employee;
 import java.util.List;
 
 public interface IEmployeeService {
-    List<Employee> getListEmployees();
+    List<Employee> showListEmployees();
 
     void addEmployee(Employee newEmployee);
 
-    Employee selectEmployee(int id);
+    Employee findById(int id);
 
-    boolean updateEmployee(Employee employee);
+    void updateEmployee(Employee employee);
 
-    boolean deleteEmployee(int id);
+   void deleteEmployee(int id);
 
-    List<Employee> selectEmployeeByName(String search);
+   List<Employee> search(String nameE, String addresE, String phoneE);
 }

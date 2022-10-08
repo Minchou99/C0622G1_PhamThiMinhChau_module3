@@ -16,7 +16,7 @@ public class CustomerTypeRepository implements ICustomerTypeRepository {
 
     @Override
     public List<CustomerType> showListTypeCustomer() {
-        List<CustomerType> customerTypes = new ArrayList<>();
+        List<CustomerType> customerTypeList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
@@ -24,11 +24,11 @@ public class CustomerTypeRepository implements ICustomerTypeRepository {
             while (resultSet.next()) {
                 int customerTypeId = resultSet.getInt("customer_type_id");
                 String customerTypeName = resultSet.getString("customer_type_name");
-                customerTypes.add(new CustomerType(customerTypeId, customerTypeName));
+                customerTypeList.add(new CustomerType(customerTypeId, customerTypeName));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return customerTypes;
+        return customerTypeList;
     }
 }

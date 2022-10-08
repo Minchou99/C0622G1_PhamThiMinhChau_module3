@@ -42,7 +42,7 @@ public class EmployeeServlet extends HttpServlet {
 
     private void findEmployees(HttpServletRequest request, HttpServletResponse response) {
         String search = request.getParameter("search");
-        List<Employee> employeeList = employeeService.selectEmployeeByName(search);
+        List<Employee> employeeList = employeeService.search(search);
         request.setAttribute("employeeList",employeeList);
         try {
             request.getRequestDispatcher("view/employee/employee_list.jsp").forward(request,response);
@@ -56,7 +56,7 @@ public class EmployeeServlet extends HttpServlet {
     private void deleteEmployees(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         employeeService.deleteEmployee(id);
-        List<Employee> list = employeeService.getListEmployees();
+        List<Employee> list = employeeService.showListEmployees();
         request.setAttribute("employeeList",list);
         try {
             request.getRequestDispatcher("view/employee/employee_list.jsp").forward(request,response);
@@ -79,7 +79,7 @@ public class EmployeeServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Employee existEmployee = employeeService.selectEmployee(id);
+        Employee existEmployee = employeeService.findById(id);
         try {
             request.setAttribute("employee",existEmployee);
             request.getRequestDispatcher("view/employee/employee_edit.jsp").forward(request,response);
@@ -160,7 +160,7 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void listEmployee(HttpServletRequest request, HttpServletResponse response) {
-        List<Employee> list = employeeService.getListEmployees();
+        List<Employee> list = employeeService.showListEmployees();
         request.setAttribute("employeeList", list);
         try {
             request.getRequestDispatcher("view/employee/employee_list.jsp").forward(request, response);

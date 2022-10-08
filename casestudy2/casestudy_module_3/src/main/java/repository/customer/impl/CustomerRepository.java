@@ -22,7 +22,7 @@ public class CustomerRepository implements ICustomerRepository {
 
     @Override
     public List<Customer> showListCustomer() {
-        List<Customer> customers = new ArrayList<>();
+        List<Customer> customerList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
@@ -37,12 +37,12 @@ public class CustomerRepository implements ICustomerRepository {
                 String email = resultSet.getString("email");
                 String address = resultSet.getString("address");
                 int customerTypeId = resultSet.getInt("customer_type_id");
-                customers.add(new Customer(id, name, dateOfBirth, gender, idCard, phoneNumber, email, address, customerTypeId));
+                customerList.add(new Customer(id, name, dateOfBirth, gender, idCard, phoneNumber, email, address, customerTypeId));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return customers;
+        return customerList;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public List<Customer> searchCustomer(String nameC, String addressC, String phoneC) {
+    public List<Customer> search(String nameC, String addressC, String phoneC) {
         List<Customer> customerList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         try {
@@ -133,16 +133,16 @@ public class CustomerRepository implements ICustomerRepository {
             preparedStatement.setString(3, "%" + phoneC + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int customerId = resultSet.getInt("customer_id");
-                String name = resultSet.getString("customer_name");
-                String birthday = resultSet.getString("customer_birthday");
-                int gender = resultSet.getInt("customer_gender");
-                String idCard = resultSet.getString("customer_id_card");
-                String phone = resultSet.getString("customer_phone");
-                String email = resultSet.getString("customer_email");
-                String address = resultSet.getString("customer_address");
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String birthday = resultSet.getString("birthday");
+                int gender = resultSet.getInt("gender");
+                String idCard = resultSet.getString("id_card");
+                String phone = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
                 int customerTypeId = resultSet.getInt("customer_type_id");
-                customerList.add(new Customer(customerId, name, birthday, gender, idCard, phone, email, address, customerTypeId));
+                customerList.add(new Customer(id, name, birthday, gender, idCard, phone, email, address, customerTypeId));
             }
         } catch (SQLException e) {
             e.printStackTrace();

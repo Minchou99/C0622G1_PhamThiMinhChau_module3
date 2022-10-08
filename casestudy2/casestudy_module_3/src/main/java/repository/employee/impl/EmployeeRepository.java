@@ -35,10 +35,10 @@ public class EmployeeRepository implements IEmployeeRepository {
                 String phoneNumber = rs.getString("phone_number");
                 String email = rs.getString("email");
                 String address = rs.getString("address");
-                int position_id = rs.getInt("position_id");
-                int education_degree_id = rs.getInt("education_degree_id");
-                int division_id = rs.getInt("division_id");
-                employeeList.add(new Employee(id, name, dateOfBirth, idCard, salary, phoneNumber, email, address, position_id, education_degree_id, division_id));
+                int positionId = rs.getInt("position_id");
+                int educationDegreeId = rs.getInt("education_degree_id");
+                int divisionId = rs.getInt("division_id");
+                employeeList.add(new Employee(id, name, dateOfBirth, idCard, salary, phoneNumber, email, address, positionId, educationDegreeId, divisionId));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

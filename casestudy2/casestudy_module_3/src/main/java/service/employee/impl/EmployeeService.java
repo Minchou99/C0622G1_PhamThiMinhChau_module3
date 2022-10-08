@@ -11,7 +11,7 @@ public class EmployeeService implements IEmployeeService {
     private IEmployeeRepository employeeRepository = new EmployeeRepository();
 
     @Override
-    public List<Employee> getListEmployees() {
+    public List<Employee> showListEmployees() {
         return employeeRepository.showListEmployees();
     }
 
@@ -21,22 +21,22 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Employee selectEmployee(int id) {
+    public Employee findById(int id) {
         return employeeRepository.findByIdEmployee(id);
     }
 
     @Override
     public void updateEmployee(Employee employee) {
-        return employeeRepository.updateEmployee(employee);
+         employeeRepository.updateEmployee(employee);
     }
 
     @Override
     public void deleteEmployee(int id) {
-        return employeeRepository.deleteEmployee(id);
+       employeeRepository.deleteEmployee(id);
     }
 
     @Override
-    public List<Employee> selectEmployeeByName(String nameE, String address, String phone) {
-        return employeeRepository.search(nameE,address);
+    public List<Employee> search(String nameE, String addresE, String phoneE) {
+        return employeeRepository.search(nameE,addresE,phoneE);
     }
 }

@@ -4,14 +4,16 @@ public class ContractDetail {
     private int id;
     private int contractId;
     private int attachFacilityId;
+    private int quantity;
 
     public ContractDetail() {
     }
 
-    public ContractDetail(int id, int contractId, int attachFacilityId) {
+    public ContractDetail(int id, int contractId, int attachFacilityId, int quantity) {
         this.id = id;
         this.contractId = contractId;
         this.attachFacilityId = attachFacilityId;
+        this.quantity= quantity;
     }
 
     public int getId() {
@@ -36,5 +38,13 @@ public class ContractDetail {
 
     public void setAttachFacilityId(int attachFacilityId) {
         this.attachFacilityId = attachFacilityId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
