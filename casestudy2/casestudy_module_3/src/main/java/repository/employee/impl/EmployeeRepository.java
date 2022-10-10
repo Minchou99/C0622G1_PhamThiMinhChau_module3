@@ -145,7 +145,7 @@ public class EmployeeRepository implements IEmployeeRepository {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                String birthday = resultSet.getString("birthday");
+                String birthday = resultSet.getString("date_of_birth");
                 String idCard = resultSet.getString("id_card");
                 double salary = Double.parseDouble(resultSet.getString("salary"));
                 String phone = resultSet.getString("phone_number");

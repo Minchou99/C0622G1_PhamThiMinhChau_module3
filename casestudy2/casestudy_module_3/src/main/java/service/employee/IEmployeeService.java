@@ -7,7 +7,7 @@ import java.util.List;
 public interface IEmployeeService {
     List<Employee> showListEmployees();
 
-    void addEmployee(Employee newEmployee);
+    boolean addEmployee(Employee newEmployee);
 
     Employee findById(int id);
 

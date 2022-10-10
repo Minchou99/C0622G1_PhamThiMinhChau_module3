@@ -16,8 +16,9 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public void addEmployee(Employee newEmployee) {
+    public boolean addEmployee(Employee newEmployee) {
         employeeRepository.addNewEmployee(newEmployee);
+        return false;
     }
 
     @Override

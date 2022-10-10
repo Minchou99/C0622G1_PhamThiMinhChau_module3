@@ -13,13 +13,13 @@ import java.util.List;
 
 public class ContractRepository implements IContractRepository {
     private static final String SELECT_ALL =
-            "select c.*, (f.cost+sum(ifnull(cd.quantity, 0) * ifnull(af.attach_facility_cost, 0))) as total_money \n" +
-                    "from contract c left join facility f on c.facility_id = f.id \n" +
+            "select f.name as f_name, cus.name, c.start_date, c.end_date, c.deposit, (f.cost+sum(ifnull(cd.quantity, 0) * ifnull(af.cost, 0))) as total_money \n" +
+                    "from contract c \n" +
+                    "left join facility f on c.facility_id = f.id\n" +
+                    "join customer cus on cus.id = c.customer_id\n" +
                     "left join contract_detail cd on cd.contract_id = c.id\n" +
-                    "left join attach_facility af on af.id = cd.attach_facility_id\n" +
-                    "group by c.contract_id;";
-    private static final String CREATE_CONTRACT= "insert into contract(start_date, end_date, deposit, employee_id, customer_id, facility_id) values(?,?,?,?,?,?);";
-
+                    "left join attach_facility af on af.id = cd.attach_facility_id group by cus.name;";
+    private static final String CREATE_CONTRACT = "insert into contract(start_date, end_date, deposit, employee_id, customer_id, facility_id) values(?,?,?,?,?,?);";
 
 
     @Override
@@ -37,8 +37,8 @@ public class ContractRepository implements IContractRepository {
                 int employeeId = resultSet.getInt("employee_id");
                 int customerId = resultSet.getInt("customer_id");
                 int facilityId = resultSet.getInt("facility_id");
-                double totalMoney =resultSet.getDouble("total_money");
-                contractList.add(new Contract( id, startDate,endDate,deposit,employeeId,customerId,facilityId,totalMoney));
+                double totalMoney = resultSet.getDouble("total_money");
+                contractList.add(new Contract(id, startDate, endDate, deposit, employeeId, customerId, facilityId, totalMoney));
             }
         } catch (SQLException e) {
             e.printStackTrace();

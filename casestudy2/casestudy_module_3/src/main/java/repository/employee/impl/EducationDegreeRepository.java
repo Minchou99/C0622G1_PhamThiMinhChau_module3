@@ -21,8 +21,8 @@ public class EducationDegreeRepository implements IEducationDegreeRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                int educationDegreeId = resultSet.getInt("education_degree_id");
-                String educationDegreeName = resultSet.getString("education_degree_name");
+                int educationDegreeId = resultSet.getInt("id");
+                String educationDegreeName = resultSet.getString("name");
                 educationDegreeList.add(new EducationDegree(educationDegreeId,educationDegreeName));
             }
         } catch (SQLException e) {

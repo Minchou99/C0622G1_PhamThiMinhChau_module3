@@ -49,6 +49,10 @@ public class CustomerService implements ICustomerService {
             map.put("empty_birthday", "Ngày sinh không được để trống");
         }
 
+        if (customer.getAddress().length() == 0) {
+            map.put("empty_address", "Địa chỉ không được để trống");
+        }
+
         if (map.isEmpty()) {
             if (!customerRepository.addNewCustomer(customer)){
                 map.put("error","Không thể tạo mới");

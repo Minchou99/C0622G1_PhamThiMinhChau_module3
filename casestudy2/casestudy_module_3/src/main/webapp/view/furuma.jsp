@@ -41,10 +41,7 @@
                         <a class="nav-link active" href="/customers">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/services">Service</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/bookings">Booking</a>
+                        <a class="nav-link active" href="/facilities">Facility</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/contracts">Contract</a>

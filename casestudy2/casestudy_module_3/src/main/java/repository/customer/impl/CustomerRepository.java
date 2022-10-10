@@ -135,7 +135,7 @@ public class CustomerRepository implements ICustomerRepository {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                String birthday = resultSet.getString("birthday");
+                String birthday = resultSet.getString("date_of_birth");
                 int gender = resultSet.getInt("gender");
                 String idCard = resultSet.getString("id_card");
                 String phone = resultSet.getString("phone_number");

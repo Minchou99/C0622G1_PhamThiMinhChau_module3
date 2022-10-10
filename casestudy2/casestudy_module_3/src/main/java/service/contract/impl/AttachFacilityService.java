@@ -1,14 +1,14 @@
 package service.contract.impl;
 
 import model.contract.AttachFacility;
-import repository.contract.IAttachFacilityRepositoty;
-import repository.contract.impl.AttachFacilityRepositoty;
+import repository.contract.IAttachFacilityRepository;
+import repository.contract.impl.AttachFacilityRepository;
 import service.contract.IAttachFacilityService;
 
 import java.util.List;
 
 public class AttachFacilityService implements IAttachFacilityService {
-private IAttachFacilityRepositoty attachFacilityRepositoty = new AttachFacilityRepositoty();
+private IAttachFacilityRepository attachFacilityRepositoty = new AttachFacilityRepository();
 
     @Override
     public List<AttachFacility> showListAttachFacility() {

@@ -21,8 +21,8 @@ public class DivisionRepository implements IDivisionRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                int divisionId = resultSet.getInt("division_id");
-                String divisionName = resultSet.getString("division_name");
+                int divisionId = resultSet.getInt("id");
+                String divisionName = resultSet.getString("name");
                 divisionList.add(new Division(divisionId,divisionName));
             }
         } catch (SQLException e) {

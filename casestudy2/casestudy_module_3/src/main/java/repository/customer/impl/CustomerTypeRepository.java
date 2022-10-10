@@ -22,8 +22,8 @@ public class CustomerTypeRepository implements ICustomerTypeRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int customerTypeId = resultSet.getInt("customer_type_id");
-                String customerTypeName = resultSet.getString("customer_type_name");
+                int customerTypeId = resultSet.getInt("id");
+                String customerTypeName = resultSet.getString("name");
                 customerTypeList.add(new CustomerType(customerTypeId, customerTypeName));
             }
         } catch (SQLException e) {

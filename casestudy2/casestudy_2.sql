@@ -150,16 +150,16 @@ insert into education_degree (id, `name`)
 
 SET FOREIGN_KEY_CHECKS=0;
 insert into employee (id, `name`, date_of_birth, id_card, salary, phone_number, email, address, position_id, education_degree_id ,division_id, username)
- values(1, 'Nguyễn Văn An', '1970-11-07', '456231786', '10000000', '0901234121', 'annguyen@gmail.com', '295 Nguyễn Tất Thành, Đà Nẵng', 1, 3, 1,'Hoàng'),
-(2, 'Lê Văn Bình', '1997-04-09', '654231234', '7000000', '0934212314', 'binhlv@gmail.com', '22 Yên Bái, Đà Nẵng', 1, 2, 2,'Thoa'),
-(3, 'Hồ Thị Yến', '1995-12-12', '999231723', '14000000', '0412352315', 'thiyen@gmail.com', 'K234/11 Điện Biên Phủ, Gia Lai', 1, 3, 2,'Ngọc'),
-(4, 'Võ Công Toản', '1980-04-04', '123231365', '17000000', '0374443232', 'toan0404@gmail.com', '77 Hoàng Diệu, Quảng Trị', 1, 4, 4,'Thành'),
-(5, 'Nguyễn Bỉnh Phát', '1999-12-09', '454363232', '6000000', '0902341231', 'phatphat@gmail.com', '43 Yên Bái, Đà Nẵng', 2, 1, 1,'Dung'),
-(6, 'Khúc Nguyễn An Nghi', '2000-11-08', '964542311', '7000000', '0978653213', 'annghi20@gmail.com', '294 Nguyễn Tất Thành, Đà Nẵng', 2, 2, 3,'Bảo'),
-(7, 'Nguyễn Hữu Hà', '1993-01-01', '534323231', '8000000', '0941234553', 'nhh0101@gmail.com', '4 Nguyễn Chí Thanh, Huế', 2, 3, 2,'Ánh'),
-(8, 'Nguyễn Hà Đông', '1989-09-03', '234414123', '9000000', '0642123111', 'donghanguyen@gmail.com', '111 Hùng Vương, Hà Nội', 2, 4, 4,'An'),
-(9, 'Tòng Hoang', '1982-09-03', '256781231', '6000000', '0245144444', 'hoangtong@gmail.com', '213 Hàm Nghi, Đà Nẵng', 2, 4, 4,'Nga'),
-(10, 'Nguyễn Công Đạo', '1994-01-08', '755434343', '8000000', '0988767111', 'nguyencongdao12@gmail.com', '6 Hoà Khánh, Đồng Nai', 2, 3, 2,'Hoa');
+ values(1, 'Nguyễn Văn An', '1970-11-07', '456231786', '10000000', '0901234121', 'annguyen@gmail.com', '295 Nguyễn Tất Thành, Đà Nẵng', 1, 3, 1,'Chou'),
+(2, 'Lê Văn Bình', '1997-04-09', '654231234', '7000000', '0934212314', 'binhlv@gmail.com', '22 Yên Bái, Đà Nẵng', 1, 2, 2,'Chou1'),
+(3, 'Hồ Thị Yến', '1995-12-12', '999231723', '14000000', '0412352315', 'thiyen@gmail.com', 'K234/11 Điện Biên Phủ, Gia Lai', 1, 3, 2,'Chou2'),
+(4, 'Võ Công Toản', '1980-04-04', '123231365', '17000000', '0374443232', 'toan0404@gmail.com', '77 Hoàng Diệu, Quảng Trị', 1, 4, 4,'Chou3'),
+(5, 'Nguyễn Bỉnh Phát', '1999-12-09', '454363232', '6000000', '0902341231', 'phatphat@gmail.com', '43 Yên Bái, Đà Nẵng', 2, 1, 1,'Chou4'),
+(6, 'Khúc Nguyễn An Nghi', '2000-11-08', '964542311', '7000000', '0978653213', 'annghi20@gmail.com', '294 Nguyễn Tất Thành, Đà Nẵng', 2, 2, 3,'Chou5'),
+(7, 'Nguyễn Hữu Hà', '1993-01-01', '534323231', '8000000', '0941234553', 'nhh0101@gmail.com', '4 Nguyễn Chí Thanh, Huế', 2, 3, 2,'Chou6'),
+(8, 'Nguyễn Hà Đông', '1989-09-03', '234414123', '9000000', '0642123111', 'donghanguyen@gmail.com', '111 Hùng Vương, Hà Nội', 2, 4, 4,'Chou7'),
+(9, 'Tòng Hoang', '1982-09-03', '256781231', '6000000', '0245144444', 'hoangtong@gmail.com', '213 Hàm Nghi, Đà Nẵng', 2, 4, 4,'Chou8'),
+(10, 'Nguyễn Công Đạo', '1994-01-08', '755434343', '8000000', '0988767111', 'nguyencongdao12@gmail.com', '6 Hoà Khánh, Đồng Nai', 2, 3, 2,'Chou9');
 
 insert into customer_type(id, `name`)
 values (1,'Diamond'),
@@ -190,6 +190,14 @@ insert into facility_type (id, `name`)
 values (1,'Villa'),
 (2,'House'),
 (3,'Room');
+
+insert into user(username, password)
+values('Chou',12345),
+('Minchou',12345);
+
+insert into user_role values(1,'Chou'),(2,'Minchou');
+
+insert into role values(1,'admin'),(2,'admin');
 
 insert into facility(id, `name`, area, cost, max_people, standard_room, description_other_convenience, pool_area, number_of_floors,facility_free ,rent_type_id, facility_type_id)
 values(1, 'Villa Beach Front', 25000, 1000000, 10, 'vip', 'Có hồ bơi', '500', 4, null, 3, 1),
@@ -230,3 +238,13 @@ values (1,2,4,5),
 (6,1,3,1),
 (7,1,2,2),
 (8,12,2,2);
+
+select* from employee;
+
+select f.name,cus.name, c.start_date, c.end_date, c.deposit, (f.cost+sum(ifnull(cd.quantity, 0) * ifnull(af.cost, 0))) as total_money 
+from contract c 
+left join facility f on c.facility_id = f.id 
+join customer cus on cus.id = c.customer_id
+left join contract_detail cd on cd.contract_id = c.id
+left join attach_facility af on af.id = cd.attach_facility_id
+group by cus.name;

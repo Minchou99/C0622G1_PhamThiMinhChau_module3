@@ -21,8 +21,8 @@ public class PositionRepository implements IPositionRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int positionId = resultSet.getInt("position_id");
-                String positionName = resultSet.getString("position_name");
+                int positionId = resultSet.getInt("id");
+                String positionName = resultSet.getString("name");
                 positionList.add(new Position(positionId, positionName));
             }
         } catch (SQLException e) {
